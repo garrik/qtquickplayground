@@ -1,31 +1,51 @@
-cmake_minimum_required(VERSION 3.21.1)
+# Copyright (C) 2022 The Qt Company Ltd.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-project(QtQuickPlaygroundApp LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.16)
+project(simplemqttclient LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON) # allows to add qrc files to the list of sources for the target
+set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
-
-if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
-    qt_standard_project_setup()
+if(NOT DEFINED INSTALL_EXAMPLESDIR)
+    set(INSTALL_EXAMPLESDIR "examples")
 endif()
 
-qt_add_executable(QtQuickPlaygroundApp 
+set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/mqtt/simpleclient")
+
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Mqtt Network Widgets)
+
+qt_add_executable(simplemqttclient
     main.cpp
-    main.qrc
+    mainwindow.cpp mainwindow.h mainwindow.ui
 )
 
-target_link_libraries(QtQuickPlaygroundApp PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    Qt6::Quick
+set_target_properties(simplemqttclient PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
 )
 
-include(GNUInstallDirs)
-install(TARGETS QtQuickPlaygroundApp
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+target_compile_definitions(simplemqttclient PUBLIC
+    QT_DEPRECATED_WARNINGS
+)
+
+target_link_libraries(simplemqttclient PUBLIC
+    Qt::Core
+    Qt::Gui
+    Qt::Mqtt
+    Qt::Network
+)
+
+target_link_libraries(simplemqttclient PUBLIC Qt::Widgets)
+
+if((QT_MAJOR_VERSION GREATER 4))
+    target_link_libraries(simplemqttclient PUBLIC
+        Qt::Widgets
+    )
+endif()
+
+install(TARGETS simplemqttclient
+    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )

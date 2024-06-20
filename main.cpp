@@ -1,19 +1,14 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
+// Copyright (C) 2017 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+#include "mainwindow.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
-    QQmlApplicationEngine engine;
-    const QUrl url(u"qrc:/ui/main.qml"_qs);
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-        &app, [url](QObject *obj, const QUrl &objUrl) {
-            if (!obj && url == objUrl)
-                QCoreApplication::exit(-1);
-        }, Qt::QueuedConnection);
-    engine.load(url);
-
-    return app.exec();
+    return a.exec();
 }
