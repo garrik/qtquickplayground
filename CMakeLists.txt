@@ -20,6 +20,8 @@ qt_add_qml_module(QtQuickPlaygroundApp
     VERSION 1.0
     QML_FILES
     Main.qml
+    RedRect.qml
+    components/GreenRect.qml
 )
 
 target_link_libraries(QtQuickPlaygroundApp PRIVATE
