@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "default-preset",
+            "displayName": "CMake presets to set the build path",
+            "binaryDir": "$env{HOME}/develop/build/qtquickplayground"
+        }
+    ]
+}
