@@ -1,7 +1,7 @@
 import QtQuick
 
 Rectangle {
-    property string text: textInput.text
+    property alias text: textInput.text
 
     border.color: "green"
     color: "white"
