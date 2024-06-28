@@ -10,7 +10,7 @@ Window {
         width: 400; height: 100
         color: "lightblue"
 
-        LineEdit {
+        LineEdit2 {
             id: lineEdit
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top

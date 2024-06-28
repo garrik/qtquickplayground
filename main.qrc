@@ -2,6 +2,7 @@
     <qresource prefix="/ui">
         <file alias="main.qml">resources/main.qml</file>
         <file alias="LineEdit.qml">resources/LineEdit.qml</file>
+        <file alias="LineEdit2.qml">resources/components/LineEdit2.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="clear.svg">resources/noun-clear-6327708.svg</file>
