@@ -1,5 +1,6 @@
 <RCC>
-	<qresource prefix="/ui">
-		<file alias="main.qml">resources/main.qml</file>
-	</qresource>
+    <qresource prefix="/ui">
+        <file alias="main.qml">resources/main.qml</file>
+        <file alias="LineEdit.qml">components/LineEdit.qml</file>
+    </qresource>
 </RCC>
